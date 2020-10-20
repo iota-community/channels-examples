@@ -98,10 +98,9 @@ fn subscribe<T: Transport>(subscriber: &mut Subscriber<T>, channel_address: &Str
     // Create a new subscriber
     // REPLACE THE SECRET WITH YOUR OWN
     let encoding = "utf-8";
-    let mut subscriber = Subscriber::new("MYSUBSCRIBERSECRETSTRING", encoding, PAYLOAD_BYTES, client);
+    let mut subscriber = Subscriber::new("MYSUBSCRIBERSECRETSTRING9USLK", encoding, PAYLOAD_BYTES, client);
 
     let args: Vec<String> = env::args().collect();
-
     let channel_address = &args[1];
     let announce_message_identifier = &args[2];
     let signed_message_identifier = &args[3];
