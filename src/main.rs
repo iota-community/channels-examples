@@ -18,8 +18,6 @@ use iota_streams::app::{
     }
 };
 
-use iota::client as iota_client;
-
 use iota_conversion::trytes_converter::{
     bytes_to_trytes
 };
@@ -30,13 +28,13 @@ fn main() {
     // Change the default settings to use a lower minimum weight magnitude for the Devnet
     let mut send_opt = SendTrytesOptions::default();
     // default is 14
-    send_opt.min_weight_magnitude = 9;
+    send_opt.min_weight_magnitude = 14;
     send_opt.local_pow = false;
 
-    let url = "https://nodes.devnet.iota.org:443";
+    let node = "https://nodes.thetangle.org:443";
 
     // Connect to an IOTA node
-    let client: Client = Client::new(send_opt, iota_client::ClientBuilder::new().node(url).unwrap().build().unwrap());
+    let client = Client::new_from_url(node);
 
     let encoding = "utf-8";
 
@@ -45,7 +43,7 @@ fn main() {
     // Create a new channel
     // REPLACE THE SECRET WITH YOUR OWN
     let multi_branching_flag = false;
-    let mut author = Author::new("MYAUTHORSEC9ETSTRINGAPWOQ9", encoding, PAYLOAD_BYTES, multi_branching_flag, client);
+    let mut author = Author::new("MYAUTHORSECRET99STENRTNE", encoding, PAYLOAD_BYTES, multi_branching_flag, client);
 
     let channel_address = author.channel_address().unwrap().to_string();
     
